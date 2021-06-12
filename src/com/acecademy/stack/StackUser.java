@@ -1,19 +1,15 @@
 package com.acecademy.stack;
 
+import com.acecademy.exception.StackUnderflowException;
+
 public class StackUser {
 
     public static void main(String[] args) {
         Stack s = new StackArrayImpl(10);
-        //asdsa
-        //asdsa
-        //adasd
-
         try {
-
-            s.push(2);
-        } catch (Exception e) {
-
+            s.pop();
+        } catch (StackUnderflowException e) {
+            e.printStackTrace();
         }
-
     }
 }

@@ -1,76 +1,66 @@
 package com.acecademy;
 
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+
 public class Main {
 
-    @Override
-    protected void finalize() throws Throwable {
-        super.finalize();
+    private final int a;
+
+    public Main(int a) {
+        this.a = a;
     }
 
     public static void main(String[] args) {
-
-        Main m = new Main();
-        m.add('a', 'b');
-
-
+        new Dog();
     }
 
-    int add(int a, int b) {
-        return a + b;
-    }
+}
 
+class Animal {
+    @Override
+    protected void finalize() throws Throwable {
+        System.out.println("Cleaning the resources");
+    }
+}
+
+class Dog extends Animal {
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize();
+        System.out.println("Cleaning Dog resources");
+    }
 }
 
 
 class User {
     int id;
     String name;
-    String hobby;
-    String phone;
-    String email;
 
-
-
-    public User() {
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
+    public User(int id, String name) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
         this.name = name;
     }
 
-    public String getHobby() {
-        return hobby;
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 
-    public void setHobby(String hobby) {
-        this.hobby = hobby;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) return false;
+        User u1 = (User) obj;
+        if (u1.hashCode() != this.hashCode()) return false;
+        return this.id == u1.id;
     }
 }

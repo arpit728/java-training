@@ -1,5 +1,8 @@
 package com.acecademy.stack;
 
+import com.acecademy.exception.StackOverflowException;
+import com.acecademy.exception.StackUnderflowException;
+
 public class StackArrayImpl implements Stack {
 
     private int stack[];
@@ -8,17 +11,21 @@ public class StackArrayImpl implements Stack {
 
     public StackArrayImpl(int cap) {
         this.cap = cap;
+        top = -1;
     }
 
     @Override
-    public void push(int x) throws Exception  {
+    public void push(int x) throws StackOverflowException {
         if (top == cap) {
-            throw new Exception("Stack Overflow");
+            throw new StackOverflowException("Maximum capacity reached, cannot add more elements. Stack Overflow!!");
         }
     }
 
     @Override
-    public int pop() {
+    public int pop()throws StackUnderflowException {
+        if (top == -1) {
+            throw new StackUnderflowException("Cannot pop elements from empty stack");
+        }
         return 0;
     }
 
