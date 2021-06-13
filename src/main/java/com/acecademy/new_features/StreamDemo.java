@@ -1,24 +1,14 @@
-package com.acecademy;
+package com.acecademy.new_features;
 
 
-import java.io.*;
-import java.util.*;
-import java.util.function.BiFunction;
-import java.util.function.IntBinaryOperator;
-import java.util.function.IntPredicate;
-import java.util.function.Predicate;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
-public class Main {
-
-    public Main() {
-        System.out.println("Constructor");
-    }
-
-    public Main(int a, int b) {
-        System.out.println("Arg Constructor");
-    }
-
+public class StreamDemo {
     public static void main(String[] args) throws IOException {
 
         int a[] = new int[]{};
@@ -74,9 +64,8 @@ public class Main {
         BufferedReader br = new BufferedReader(new FileReader("input.txt"));
 
     }
-
-
 }
+
 
 class Student {
 
@@ -95,39 +84,3 @@ class Student {
     }
 }
 
-
-class ArithmeticOperations {
-
-    static int add(int a, int b) {
-        return a + b;
-    }
-
-    static int sub(int a, int b) {
-        return a - b;
-    }
-
-    static int mul(int a, int b) {
-        return a * b;
-    }
-
-    static int div(int a, int b) {
-        return a / b;
-    }
-}
-
-class Calculator {
-
-    Map<Character, IntBinaryOperator> operatorToFunction = new HashMap<Character, IntBinaryOperator>() {{
-        put('+', ArithmeticOperations::add);
-        put('-', ArithmeticOperations::sub);
-        put('*', ArithmeticOperations::mul);
-        put('/', ArithmeticOperations::div);
-    }};
-
-    int apply(char operator, int a, int b) {
-        if (!operatorToFunction.containsKey(operator)) {
-            throw new IllegalArgumentException("Operator not supported");
-        }
-        return operatorToFunction.get(operator).applyAsInt(a, b);
-    }
-}
